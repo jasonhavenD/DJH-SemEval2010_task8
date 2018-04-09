@@ -54,29 +54,28 @@ def extract_features(train_sents):
 
 		feature['preffix1'], feature['preffix2'] = e1[:2], e2[:2]
 		feature['suffix1'], feature['suffix2'] = e1[-2:], e2[-2:]
-		feature['istitle1'], feature['istitle2'] = e1.istitle(), e2.istitle()
+		feature['istitle1'], feature['istitle2'] = str(e1.istitle()), str(e2.istitle())
 		feature['pos_tag1'], feature['pos_tag2'] = nlp.pos_tag(e1)[0][1], nlp.pos_tag(e2)[0][1]
 
 		if feature['index1'] < 2:
 			feature['pre_pos_tag1'] = 'None'
-			feature['pre_istitle1'], feature['pre_istitle2'] = 'None', 'None'
+			feature['pre_istitle1'] = 'None'
 		else:
-			word1, word2 = sent[feature['index1'] - 1], sent[feature['index2'] - 1]
-			feature['pre_istitle1'], feature['pre_istitle2'] = word1.istitle(), word2.istitle()
-			feature['pre_pos_tag1'], feature['pre_pos_tag2'] = nlp.pos_tag(word1)[0][1], nlp.pos_tag(word2)[0][1]
+			word1 = sent[feature['index1'] - 1]
+			feature['pre_istitle1'] = str(word1.istitle())
+			feature['pre_pos_tag1'] = nlp.pos_tag(word1)[0][1]
 
 		if feature['index2'] > len(sent) - 2:
 			feature['post_pos_tag2'] = 'None'
-			feature['post_istitle1'], feature['post_istitle2'] = 'None', 'None'
+			feature['post_istitle2'] = 'None'
 		else:
-			word1, word2 = sent[feature['index1'] + 1], sent[feature['index2'] + 1]
-			feature['post_istitle1'], feature['post_istitle2'] = word1.istitle(), word2.istitle()
-			feature['post_pos_tag1'], feature['post_pos_tag2'] = nlp.pos_tag(word1)[0][1], nlp.pos_tag(word2)[0][1]
+			word2 = sent[feature['index2'] + 1]
+			feature['post_istitle2'] = str(word2.istitle())
+			feature['post_pos_tag2'] = nlp.pos_tag(word2)[0][1]
 
 		# print(feature)
 		features.append(feature)
 	nlp.close()
-
 	return features
 
 

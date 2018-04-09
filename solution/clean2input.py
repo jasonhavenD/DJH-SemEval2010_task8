@@ -11,12 +11,12 @@
 """
 import sys
 import datetime
+
 sys.path.append("./feature")
 
 from feature import extract
 from feature import digitalize
 from feature import normalize
-
 
 delimiter = "\t"
 
@@ -59,7 +59,7 @@ def convert_features(text):
 	features_dataframe = digitalize.get_features_dataframe(features)
 	props_table = digitalize.get_props_table(features_dataframe)
 	nums_of_features = digitalize.features2nums(features_dataframe, props_table)
-	normalized_features=normalize.normalize(nums_of_features)
+	normalized_features = normalize.normalize(nums_of_features)
 	text = []
 	for row in normalized_features.index:
 		row_str = [str(x) for x in list(normalized_features.loc[row])]
@@ -85,17 +85,16 @@ if __name__ == '__main__':
 	begin = datetime.datetime.now()
 	train_text = load(ftrain)
 	train_text = convert_features(train_text)
+	save(train_text, "data/input/train.txt")
 	end = datetime.datetime.now()
 	print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
-	save(train_text, "data/input/train.txt")
 
-	# begin = datetime.datetime.now()
-	# test_text = load(ftest)
-	# test_text = convert_features(test_text)
-	# save(test_text, "data/input/test.txt")
-	# end = datetime.datetime.now()
-	# print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
-	#
+	begin = datetime.datetime.now()
+	test_text = load(ftest)
+	test_text = convert_features(test_text)
+	save(test_text, "data/input/test.txt")
+	end = datetime.datetime.now()
+	print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
 
 	# begin = datetime.datetime.now()
 	# key_text = load(fkey)

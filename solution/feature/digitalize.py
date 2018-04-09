@@ -41,6 +41,7 @@ def get_props_table(features_dataframe):
 	'''
 	props_table = {}  # table of props,which aim to trans prop to num
 	for prop_key in features_dataframe.columns:
+		# print(set(features_dataframe[prop_key]))
 		props = sorted(set(features_dataframe[prop_key]))
 		props_table[prop_key] = props
 	return props_table
