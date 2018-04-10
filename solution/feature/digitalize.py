@@ -11,8 +11,7 @@
 """
 from extract import *
 import pandas as pd
-
-
+import json
 
 
 def get_features_dataframe(features):
@@ -46,16 +45,26 @@ def get_props_table(features_dataframe):
 		props_table[prop_key] = props
 	return props_table
 
-def labels2nums(labels):
+
+def get_labels_table(labels):
+	'''
+	:param labels:list
+	:return:labels_table:dict
+	'''
+	labels_table = sorted(set(labels))
+	return labels_table
+
+
+def labels2nums(labels_table, labels):
 	'''
 	:param labels:list
 	:return:nums_of_labels:list
 	'''
-	labels_table = sorted(set(labels))
 	nums_of_labels = []
 	for label in labels:
-		nums_of_labels.append(labels_table.index(label)+1)
+		nums_of_labels.append(labels_table.index(label) + 1)
 	return nums_of_labels
+
 
 def features2nums(features_dataframe, props_table):
 	'''
@@ -80,8 +89,30 @@ def props2nums(props_table, values_of_props, prop_key):
 	'''
 	nums_of_props = []
 	for value in values_of_props:
-		nums_of_props.append(props_table[prop_key].index(value)+1)
+		nums_of_props.append(props_table[prop_key].index(value) + 1)
 	return nums_of_props
+
+
+def save_features_mapping_table(props_table,file):
+	'''
+	:param props_table:dict
+	:return:
+	'''
+	# file = "../data/mapping/features.txt"
+	fp = open(file, 'w', encoding='utf-8')
+	json.dump(props_table, fp)
+	fp.close()
+
+
+def save_labels_mapping_table(labels_table,file):
+	'''
+	:param props_table:dict
+	:return:
+	'''
+	# file = "../data/mapping/labels.txt"
+	with open(file, 'w', encoding='utf-8')as f:
+		for i, label in enumerate(labels_table):
+			f.write("{}\t{}\n".format(i+1, label))
 
 
 if __name__ == '__main__':
@@ -93,6 +124,7 @@ if __name__ == '__main__':
 	# features = extract_features(train_sents)
 	# features_dataframe = get_features_dataframe(features)
 	# props_table = get_props_table(features_dataframe)
+	# save_features_mapping_table(props_table,"../data/mapping/features.txt")
 	# print(features2nums(features_dataframe, props_table))
 
 	train_keys = [
@@ -100,5 +132,7 @@ if __name__ == '__main__':
 		'2	Other',
 		'3	Instrument - Agency(e2, e1)'
 	]
-	labels = extract_labels(train_keys)
-	print(labels2nums(labels))
+	# labels = extract_labels(train_keys)
+	# labels_table = get_labels_table(labels)
+	# save_labels_mapping_table(labels_table,"../data/mapping/labels.txt")
+	# print(labels2nums(labels, labels_table))

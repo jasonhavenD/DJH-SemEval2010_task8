@@ -54,8 +54,14 @@ def convert(text):
 
 
 if __name__ == '__main__':
-	filename = "data/TRAIN_FILE.TXT"
+	filename = "data/TRAIN_FILE_FULL.TXT"
 	text = load(filename)
 	sents, relations = convert(text)
 	save(sents, "data/clean/train_clean.txt")
 	save(relations, "data/clean/train_key.txt")
+
+	filename = "data/TEST_FILE_FULL.TXT"
+	text = load(filename)
+	sents, relations = convert(text)
+	save(sents, "data/clean/test_clean.txt")
+	save(relations, "data/clean/test_key.txt")
