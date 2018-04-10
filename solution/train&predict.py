@@ -21,7 +21,7 @@ if __name__ == '__main__':
 	begin = datetime.datetime.now()
 	train_label, train_value = svm_read_problem("data/input/train-FormatDatalibsvm.txt")  # 训练数据集
 	predict_label, predict_value = svm_read_problem("data/input/test-FormatDatalibsvm.txt")  # 预测数
-	model = svm_train(train_label, train_value)  # 训练模型
+	model = svm_train(train_label, train_value,'-c 32 -g 0.0078125')  # 训练模型
 	svm_save_model("data/model/model.txt", model)  # 保存模型
 	p_label, p_acc, p_val = svm_predict(predict_label, predict_value, model)
 	print(p_acc)

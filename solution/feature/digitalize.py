@@ -93,9 +93,10 @@ def props2nums(props_table, values_of_props, prop_key):
 	return nums_of_props
 
 
-def save_features_mapping_table(props_table,file):
+def save_features_mapping_table(props_table, file):
 	'''
 	:param props_table:dict
+	:param file:str
 	:return:
 	'''
 	# file = "../data/mapping/features.txt"
@@ -104,15 +105,16 @@ def save_features_mapping_table(props_table,file):
 	fp.close()
 
 
-def save_labels_mapping_table(labels_table,file):
+def save_labels_mapping_table(labels_table, file):
 	'''
 	:param props_table:dict
+	:param file:str
 	:return:
 	'''
 	# file = "../data/mapping/labels.txt"
 	with open(file, 'w', encoding='utf-8')as f:
 		for i, label in enumerate(labels_table):
-			f.write("{}\t{}\n".format(i+1, label))
+			f.write("{}\t{}\n".format(i + 1, label))
 
 
 if __name__ == '__main__':
@@ -132,7 +134,7 @@ if __name__ == '__main__':
 		'2	Other',
 		'3	Instrument - Agency(e2, e1)'
 	]
-	# labels = extract_labels(train_keys)
-	# labels_table = get_labels_table(labels)
-	# save_labels_mapping_table(labels_table,"../data/mapping/labels.txt")
-	# print(labels2nums(labels, labels_table))
+# labels = extract_labels(train_keys)
+# labels_table = get_labels_table(labels)
+# save_labels_mapping_table(labels_table,"../data/mapping/labels.txt")
+# print(labels2nums(labels, labels_table))

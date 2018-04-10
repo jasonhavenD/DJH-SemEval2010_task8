@@ -56,7 +56,8 @@ def extract_features(train_sents):
 		# print(sent)
 
 		feature['preffix1'], feature['preffix2'] = e1[:2], e2[:2]
-		feature['suffix1'], feature['suffix2'] = e1[-2:], e2[-2:]
+		feature['suffix1_1'], feature['suffix2_1'] = e1[-1:], e2[-1:]
+		feature['suffix1_2'], feature['suffix2_2'] = e1[-2:], e2[-2:]
 		feature['istitle1'], feature['istitle2'] = str(e1.istitle()), str(e2.istitle())
 		feature['pos_tag1'], feature['pos_tag2'] = nlp.pos_tag(e1)[0][1], nlp.pos_tag(e2)[0][1]
 
