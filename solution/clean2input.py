@@ -13,40 +13,13 @@ import sys
 import datetime
 
 sys.path.append("./feature")
-
+sys.path.append("./ioutil")
 from feature import extract
 from feature import digitalize
 from feature import normalize
+from ioutil import io
 
 delimiter = "\t"
-
-
-def load(file):
-	'''
-	:param file: str
-	:return:text:list
-	'''
-	text = []
-	with open(file, "r", encoding="utf-8") as f:
-		for line in f.readlines():
-			line = line.replace('<e', ' <e')  # 确保实体标记之前有空白字符
-			text.append(line.strip())
-	return text
-
-
-def save(text, file):
-	'''
-	:param text:list
-	:param file: str
-	:return:
-	'''
-	try:
-		with open(file, "w", encoding="utf-8") as f:
-			for line in text:
-				f.write(line + "\n")
-		print("save successfully!", file)
-	except Exception as e:
-		print(e)
 
 
 def convert_features(text):
@@ -84,22 +57,22 @@ if __name__ == '__main__':
 	fkey = "data/clean/train_key.txt"
 
 	# begin = datetime.datetime.now()
-	# train_text = load(ftrain)
+	# train_text = io.load(ftrain)
 	# train_text = convert_features(train_text)
-	# save(train_text, "data/input/train.txt")
+	# io.save(train_text, "data/input/train.txt")
 	# end = datetime.datetime.now()
 	# print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
 
 	# begin = datetime.datetime.now()
-# test_text = load(ftest)
+# test_text = io.load(ftest)
 # test_text = convert_features(test_text)
-# save(test_text, "data/input/test.txt")
+# io.save(test_text, "data/input/test.txt")
 # end = datetime.datetime.now()
 # print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
 
-# begin = datetime.datetime.now()
-# key_text = load(fkey)
-# key_text = convert_labels(key_text)
-# save(key_text, "data/input/key.txt")
-# end = datetime.datetime.now()
-# print('convert_labels finished in ' + str((end - begin).seconds) + ' s!')
+	# begin = datetime.datetime.now()
+	# key_text = io.load(fkey)
+	# key_text = convert_labels(key_text)
+	# io.save(key_text, "data/input/key.txt")
+	# end = datetime.datetime.now()
+	# print('convert_labels finished in ' + str((end - begin).seconds) + ' s!')
