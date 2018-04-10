@@ -50,6 +50,9 @@ def extract_features(train_sents):
 				break
 
 		sent = re.split(r'[.\s]+', soup.text)
+
+		# print(feature,sent[0])
+
 		# print(sent)
 
 		feature['preffix1'], feature['preffix2'] = e1[:2], e2[:2]

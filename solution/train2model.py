@@ -10,4 +10,5 @@
 -------------------------------------------------
 """
 if __name__ == '__main__':
-    pass
+	ftrain = "data/input/train_clean.txt"
+	fkey = "data/input/train_key.txt"

@@ -29,6 +29,7 @@ def load(file):
 	text = []
 	with open(file, "r", encoding="utf-8") as f:
 		for line in f.readlines():
+			line = line.replace('<e', ' <e')  # 确保实体标记之前有空白字符
 			text.append(line.strip())
 	return text
 
@@ -82,23 +83,23 @@ if __name__ == '__main__':
 	ftest = "data/clean/test_clean.txt"
 	fkey = "data/clean/train_key.txt"
 
-	begin = datetime.datetime.now()
-	train_text = load(ftrain)
-	train_text = convert_features(train_text)
-	save(train_text, "data/input/train.txt")
-	end = datetime.datetime.now()
-	print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
-
-	begin = datetime.datetime.now()
-	test_text = load(ftest)
-	test_text = convert_features(test_text)
-	save(test_text, "data/input/test.txt")
-	end = datetime.datetime.now()
-	print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
+	# begin = datetime.datetime.now()
+	# train_text = load(ftrain)
+	# train_text = convert_features(train_text)
+	# save(train_text, "data/input/train.txt")
+	# end = datetime.datetime.now()
+	# print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
 
 	# begin = datetime.datetime.now()
-	# key_text = load(fkey)
-	# key_text = convert_labels(key_text)
-	# save(key_text, "data/input/key.txt")
-	# end = datetime.datetime.now()
-	# print('convert_labels finished in ' + str((end - begin).seconds) + ' s!')
+# test_text = load(ftest)
+# test_text = convert_features(test_text)
+# save(test_text, "data/input/test.txt")
+# end = datetime.datetime.now()
+# print('convert_features finished in ' + str((end - begin).seconds) + ' s!')
+
+# begin = datetime.datetime.now()
+# key_text = load(fkey)
+# key_text = convert_labels(key_text)
+# save(key_text, "data/input/key.txt")
+# end = datetime.datetime.now()
+# print('convert_labels finished in ' + str((end - begin).seconds) + ' s!')

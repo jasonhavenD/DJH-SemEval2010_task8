@@ -28,7 +28,7 @@ def load(file):
 					continue
 				sent, relation, comment = lines.split("\n")
 				item = {}
-				item['sent'] = sent.strip().replace('<e',' <e')#确保实体标记之前有空白字符
+				item['sent'] = sent.strip()
 				item['relation'] = sent.split(delimiter)[0] + delimiter + relation.strip()
 				item['comment'] = comment.strip()
 				# print(item)
